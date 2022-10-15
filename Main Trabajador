@@ -1,0 +1,123 @@
+-M
+#MAIN
+from trabajador import  TrabajadorH
+##from sueldo import  sueldoH
+
+lista=[]
+#s=sueldoH(500000,100000) 
+t=TrabajadorH(1,"Moya","Susana",35)
+lista.append(t)
+
+#s=sueldoH(600000,200000) 
+t=TrabajadorH(2,"Muñoz","Jorge",40)
+lista.append(t)
+
+while True:
+    print("\n*****************************************************"+\
+            "\n**************  B I E N V E N I D O  ****************"+\
+            "\n*****************************************************")   
+    opcion=input(t.menu())
+
+    if opcion =="1":
+        for a in lista:
+            print(a.mostrarTrabajador())
+    elif opcion =="2":
+        idBuscar=int(input("Ingrese el id que desea buscar: "))
+        b=t.buscarTrabajador(idBuscar,lista)
+        if b != None:
+            print("\nPersona Encontrada")
+            print(b.mostrarTrabajador())
+        else:
+            print("Persona no Encontrada")
+
+    elif opcion == "3":
+        idAgregar=int(input("Ingrese el id que desea agregar: "))
+        a=t.agregarTrabajador(idAgregar,lista)
+        for a in lista:
+            print(a.mostrarTrabajador())
+
+    elif opcion == "4":
+        idModificar=int(input("Ingrese el id que desea modificar: "))
+        (opcion=input(t.subMenu()))
+        
+        m=t.modificarTrabajador(idModificar,lista)
+        for m in lista:
+            print(m.mostrarTrabajador())
+            
+    elif opcion == "5":
+        pass
+    elif opcion == "6":
+        print("******** Hasta luego ********")
+        break
+        
+        
+   # trabajador
+   
+class TrabajadorH():
+    def __init__(self,id,apellido,nombre,edad):
+        self.id=id
+        self.apellido=apellido
+        self.nombre=nombre
+        self.edad=edad
+        #self.sueldo=sueldo
+
+    def mostrarTrabajador(self):
+        return  "\n ID          : " +str(self.id )+\
+                "\n Apellido    : " +self.apellido+\
+                "\n Nombre      : " +self.nombre+\
+                "\n Edad        : " +str(self.edad)
+                #self.sueldo.mostrarSueldo()
+
+    def buscarTrabajador(self,idBuscar,lista):
+        for b in lista:
+            if idBuscar== b.id:
+                return b
+
+    def agregarTrabajador(self,idAgregar,lista):
+        if self.buscarTrabajador(idAgregar,lista)== None:
+            apellido=input("Ingrese el apellido :")
+            nombre=input("Ingrese el nombre     :")
+            edad=int(input("Ingrese la edad     :"))
+            #sueldo=(input("Ingrese sueldo       :",self.sueldo.mostrarSueldo()))
+            a=TrabajadorH(idAgregar,apellido,nombre,edad)
+            lista.append(a)
+            return lista
+        else:
+            print("\n***** Persona ya existe *****")
+
+    def modificarTrabajador(self,idModificar,lista):
+
+        if self.buscarTrabajador(idModificar, lista):
+                if opcion == 1:
+                    for anteriorDato in lista:
+                        anteriorDato.id == idModificar
+                        actualizacionDato = anteriorDato.apellido
+                        anteriorDato.apellido = input("Apellido: ")
+                        return actualizacionDato
+        else:
+            print("\n***** Persona no existe *****")
+        
+   
+
+    def EliminarTrabajador():
+        pass
+
+
+    def menu(self):
+       return  ( "\nElige la opción que desea realizar"+\
+                "\n1.-Mostrar todos los trabajadores "+\
+                "\n2.-Buscar los datos un trabajador"+\
+                "\n3.-Agregar un Trabajador"+\
+                "\n4.-Modificar datos de un trabajador"+\
+                "\n5.-Eliminar los datos de un trabajador"+\
+                "\n6.-Salir")+\
+                "\n "
+
+    def subMenu(self):
+       return  ( "\nElige la opción que desea realizar"+\
+                "\n1.-Modificar apellido "+\
+                "\n2.-Modificar nombre "+\
+                "\n3.-Modificar edad    " +\
+                "\n4.-Salir")+\
+                "\n "
+    
